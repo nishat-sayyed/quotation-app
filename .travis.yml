@@ -7,6 +7,7 @@ matrix:
       env:
         - ELECTRON_CACHE=$HOME/.cache/electron
         - ELECTRON_BUILDER_CACHE=$HOME/.cache/electron-builder
+        - GH_TOKEN=cadcc7a7718fbc72049155b6055b8336c5857f15
     - os: linux
       language: node_js
       node_js:
