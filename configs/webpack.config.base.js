@@ -7,7 +7,13 @@ import webpack from 'webpack';
 import { dependencies as externals } from '../app/package.json';
 
 export default {
-  externals: [externals(), ['pg', 'sqlite3', 'tedious', 'pg-hstore']],
+  externals: [
+    ...Object.keys(externals || {}),
+    'pg',
+    'sqlite3',
+    'tedious',
+    'pg-hstore',
+  ],
   module: {
     rules: [
       {
@@ -43,5 +49,10 @@ export default {
     }),
 
     new webpack.NamedModulesPlugin(),
+
+    new webpack.ContextReplacementPlugin(
+      /Sequelize(\\|\/)/,
+      path.resolve(__dirname, '../app')
+    ),
   ],
 };
